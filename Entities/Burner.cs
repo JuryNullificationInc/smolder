@@ -1,6 +1,9 @@
-﻿namespace smolder.Entities
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace smolder.Entities
 {
-    public class Burner
+    public class Burner : IdentityUser
     {
+
     }
 }
