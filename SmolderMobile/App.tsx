@@ -1,118 +1,59 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import * as React from 'react';
+import { AppRegistry, Image, View } from 'react-native';
+import { PaperProvider } from 'react-native-paper';
+import { displayName as appName } from './app.json';
+import SmolderCloud from './components/SmolderCloud';
+import SmolderContacts from './components/SmolderContacts';
+import SmolderDeets from './components/SmolderDeets';
+import SmolderHome from './components/SmolderHome';
+import SmolderSettings from './components/SmolderSettings';
+import SmolderTabBar from './components/SmolderTabBar';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+const Tab = createBottomTabNavigator();
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+export default function App() {
+	return (
+		<NavigationContainer>
+			<Tab.Navigator
+				screenOptions={({ route }) => ({
+					tabBarIcon: ({ focused, color, size }) => {
+						switch (route.name) {
+							case 'Smolder': {
+								return focused
+									? <Image style={{ width: size, height: size }} source={require('./components/assets/burn.png')} />
+									: <Image style={{ width: size, height: size }} source={require('./components/assets/burn_outline.png')} />;
+							}
+							case 'Events': {
+								return focused
+									? <Image style={{width: size, height: size}} source={require('./components/assets/camp.png')} />
+									: <Image style={{ width: size, height: size }} source={require('./components/assets/camp_outline.png')} />;
+							}
+							case 'People': {
+								return focused
+									? <Image style={{ width: size, height: size }} source={require('./components/assets/burner.png')} />
+									: <Image style={{ width: size, height: size }} source={require('./components/assets/burner_outline.png')} />;
+							}
+							case 'Online': {
+								return focused
+									? <Image style={{ width: size, height: size }} source={require('./components/assets/cloud.png')} />
+									: <Image style={{ width: size, height: size }} source={require('./components/assets/cloud_outline.png')} />;
+							}
+							case 'Settings': {
+								return focused
+									? <Image style={{ width: size, height: size }} source={require('./components/assets/wheel.png')} />
+									: <Image style={{ width: size, height: size }} source={require('./components/assets/wheel_outline.png')} />;
+							}
+						}
+					}
+				})}>
+				<Tab.Screen name="Smolder" component={SmolderHome} />
+				<Tab.Screen name="Events" component={SmolderDeets} />
+				<Tab.Screen name="People" component={SmolderContacts} />
+				<Tab.Screen name="Online" component={SmolderCloud} />
+				<Tab.Screen name="Settings" component={SmolderSettings} />
+			</Tab.Navigator>
+		</NavigationContainer>
+	)
 }
-
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
