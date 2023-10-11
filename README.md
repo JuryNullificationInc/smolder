@@ -4,6 +4,21 @@ Welcome to the Smolder! This will eventually be a knowledge base for regional bu
 
 I'm developing this to work on my skills and also to see if I can provide a friendly place to decommodify our events, to ensure we have a non-corporatist digital garden that respects our online privacy.
 
+## Milestones
+
+* Smolder Alpha
+	* SmolderWeb Alpha
+		* Basic portal for onboarding event organizers, events, and burners
+	* SmolderMobile Alpha
+		* Basic capability to organize personal burn knowledge
+		* Packaged APK
+* Smolder Beta
+	* SmolderWeb Beta
+		* Social features and more advanced workflows
+		* Build instructions for building and hosting your own SmolderWeb instance
+	* SmolderMobile Beta
+		* Basic capabilities to interface with SmolderWeb
+
 ## Smolder Web
 
 This is the web interface. Once it's developed to a sufficient point, I'll register a domain for it for easy access. I also intend for it to be easily self-hostable, in case anyone wants to :)
